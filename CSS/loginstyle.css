@@ -38,6 +38,9 @@ body{
     text-transform: capitalize;
     font-weight: bold 100;
 }
+.start-box span{
+    display: none;
+}
 .start-box input[type = "text"], .start-box select{
     background: none;
     display: block;
