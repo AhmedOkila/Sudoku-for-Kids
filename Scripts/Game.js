@@ -1,3 +1,4 @@
+let start = document.getElementById("start");
 var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
 var arr = [
@@ -42,9 +43,9 @@ function vail() {
 
     }
     if (state && care) {
-        player_state.innerText = "you solved right";
+        player_state.innerText = "Success";
     } else {
-        player_state.innerText = "you solved wrong";
+        player_state.innerText = "Fail!";
 
     }
 }
@@ -64,7 +65,10 @@ setTimeout(() => {
     console.log("arrived")
 }, time * 1000)
 
-
+start.addEventListener("click", function(){
+    table.style.transform = "rotate(360deg)";
+    table.style.visibility = "visible";
+})
 
 table.addEventListener('keyup', (e) => {
     let id = e.target.getAttribute("id");
@@ -73,7 +77,7 @@ table.addEventListener('keyup', (e) => {
         case "1":
             e.target.value = "";
             arr[+arrc[0]].splice(+arrc[1], 1, "rect")
-            e.target.parentElement.children[1].children[0].src = "./img/rect.png"
+            e.target.parentElement.children[1].children[0].src = "images/space_theme/aliens/1.png"
             // e.target.parentElement.children[1].children[0].name = "rect"
 
             e.target.parentElement.children[1].children[0].style.display = "block"
@@ -81,7 +85,7 @@ table.addEventListener('keyup', (e) => {
         case "2":
             e.target.value = "";
             arr[+arrc[0]].splice(+arrc[1], 1, "circle")
-            e.target.parentElement.children[1].children[0].src = "./img/circle.png"
+            e.target.parentElement.children[1].children[0].src = "images/space_theme/aliens/2.png"
             e.target.parentElement.children[1].children[0].name = "circle"
 
             e.target.parentElement.children[1].children[0].style.display = "block"
@@ -90,7 +94,7 @@ table.addEventListener('keyup', (e) => {
             e.target.value = "";
             arr[+arrc[0]].splice(+arrc[1], 1, "triangle")
 
-            e.target.parentElement.children[1].children[0].src = "./img/triangle.png"
+            e.target.parentElement.children[1].children[0].src = "images/space_theme/aliens/3.png"
             e.target.parentElement.children[1].children[0].name = "triangle"
 
             e.target.parentElement.children[1].children[0].style.display = "block"
@@ -99,7 +103,7 @@ table.addEventListener('keyup', (e) => {
             e.target.value = "";
             arr[+arrc[0]].splice(+arrc[1], 1, "star")
 
-            e.target.parentElement.children[1].children[0].src = "./img/star.png"
+            e.target.parentElement.children[1].children[0].src = "images/space_theme/aliens/4.png"
             e.target.parentElement.children[1].children[0].name = "triangle"
 
             e.target.parentElement.children[1].children[0].style.display = "block"
@@ -111,7 +115,7 @@ table.addEventListener('keyup', (e) => {
             console.log("enter valid number");
             break;
     }
-    console.log(e.target.parentElement.children[1].children[0])
+    // console.log(e.target.parentElement.children[1].children[0])
 })
 
 
@@ -126,4 +130,3 @@ function random_location() {
     el.disabled = true;
 }
 random_location()
-
