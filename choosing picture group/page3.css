@@ -27,16 +27,16 @@ body {
     align-items: center;
     margin-top: 20px;
     border-radius: 20px;
-    border: 10px solid rgb(66, 66, 194);
+    border: 7px solid #0e87f8;
 }
 .space{
-    background-image: url("../images/space theme/spacebg.jpg");
+    background-image: url("../images/space_theme/spacebg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .ocean{
-    background-image: url("../images/ocean theme/ocean.jpg");
+    background-image: url("../images/ocean_theme/ocean.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -63,21 +63,23 @@ body {
 }
 
 .theme-btn{
-    width: 140px;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bold;
+    width: 145px;
+    height: 43px;
+    font-size: 22px;
+    font-weight:bolder;
     margin-top: 30px;
     border-radius: 7px;
-    border: 4px solid rgb(66, 66, 194);
+    border: 5px solid #0e87f8;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 2px;
 }
 
 .theme-btn:hover{
     cursor: pointer;
     width: 160px;
     height: 60px;
-    font-size: 22px;
-    background:cyan;
+    font-size: 27px;
+    background:rgb(10, 237, 253);
 }
 
 
@@ -85,26 +87,31 @@ body {
     cursor: pointer;
     width: 160px;
     height: 60px;
-    font-size: 22px;
-    background:darkturquoise;
+    font-size: 27px;
+    color: white;
+    background:rgb(46, 46, 156)
 }
 
 .theme-name{
     position: absolute;
     bottom: 10%;
     border-radius: 10px;
-    font-weight: bold;
+    font-weight:900;
     font-size: 32px;
     letter-spacing: 2px;
+    font-family: "Oswald", sans-serif;
+    
 }
 
 .space-style {
     color: white;
+    text-shadow: 1px 0 white;
 }
 
 
 .ocean-style {
     color: rgb(7, 7, 85);
+    text-shadow: 1px 0 rgb(7, 7, 85);
 }
 
 /* .pic1{
@@ -126,21 +133,25 @@ body {
 }
 
 #start-btn{
-    height: 70px;
-    width: 220px;
-    font-size: 50px;
+    padding: 5px 25px;
+    padding: auto;
+    font-size: 40px;
     border-radius: 15px;
-    border: 7px solid rgb(66, 66, 194);
+    color:white;
+    background-color: #02103d;
+    border: 5px solid #0e87f8;
     text-align: center;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 2px;
 }
 
 #start-btn:hover{
     cursor: pointer;
-    background: rgb(255, 132, 194);
+    background: rgb(46, 46, 156)
 }
 
 #start-btn:active{
-    background: crimson;
+    background: rgb(0, 60, 255)
 }
 
 
