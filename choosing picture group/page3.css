@@ -52,14 +52,6 @@ body {
     width: 100%;
     height: 55%;
     margin-top: 20%;
-    background: yellowgreen;
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 10px 10px;
-    grid-template-areas: 
-    "pic1 pic2"
-    "pic3 pic4"; */
 }
 
 .theme-btn{
@@ -114,14 +106,6 @@ body {
     text-shadow: 1px 0 rgb(7, 7, 85);
 }
 
-/* .pic1{
-    grid-area: pic1;
-}
-
-.image{
-    height:135px;
-    width: 100%;
-} */
 
 .btn-container{
     display: flex;
@@ -154,17 +138,9 @@ body {
     background: rgb(0, 60, 255)
 }
 
-
-
-
-
-
-
-
 table{
     height: 100%;
     width: 100%;
-    border: red 5px solid;
     align-items: center;
     z-index: 5;
 }
@@ -175,7 +151,7 @@ tr{
 }
 
 td{
-    border: red 5px solid;
+    border: #0e87f8 5px solid;
     align-items: center;
     height: 50%;
     width: 50%;
@@ -183,28 +159,13 @@ td{
 
 
 .image-div{
-    height: 50%;
-    width: 50%;
-    background: orange;
-
+    height: 100%;
+    width: 100%;
 }
 
 .image{
-    height: 50%;
-    width: 50%;
-    background: orange;
+    height: 123px;
+    width: 100%;
+    object-fit:fill;
     display: block;
 }
-
-
-
-
-/* td{
-    background: url("../images/space theme/rocket ships/1.PNG");
-    background-size: cover;   
-} */
-
-/* td img{
-    width: 25%;
-    height: 25%;
-} */ 
