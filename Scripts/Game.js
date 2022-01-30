@@ -2,131 +2,163 @@ let start = document.getElementById("start");
 var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
 var arr = [
-    ["", "", "", ""],
-    ["", "", "", ""],
-    ["", "", "", ""],
-    ["", "", "", ""]
-
-]
+  ["", "", "", ""],
+  ["", "", "", ""],
+  ["", "", "", ""],
+  ["", "", "", ""],
+];
 function vail() {
-    let care = true
-    let state = true
-
-
-    for (let k = 0; k < arr.length; k++) {
-
-        for (let i = 0; i < arr[k].length; i++) {
-            itrator = 0;
-            for (let j = 0; j < arr[k].length; j++) {
-                if (arr[k][i] == arr[k][j]) {
-                    itrator++;
-                }
-                if (itrator > 1) {
-                    state = false
-                }
-            }
+  for (let k = 0; k < arr.length; k++) {
+    for (let i = 0; i < arr[k].length; i++) {
+      itrator = 0;
+      itr = 0;
+      for (let j = 0; j < arr[k].length; j++) {
+        if (arr[k][i] == arr[k][j] || arr[k][i] == arr[j][k]) {
+          itrator++;
         }
-    }
-
-    for (let k = 0; k < arr.length; k++) {
-        for (let i = 0; i < arr[k].length; i++) {
-            itr = 0;
-            for (let j = 0; j < arr[k].length; j++) {
-                if (arr[k][i] == arr[j][k]) {
-                    itr++;
-                }
-                if (itr > 1) {
-                    care = false
-                }
-            }
+        if (itrator > 1) {
+          player_state.innerText = "Fail!";
+        } else {
+          player_state.innerText = "Success";
         }
-
+      }
     }
-    if (state && care) {
-        player_state.innerText = "Success";
-    } else {
-        player_state.innerText = "Fail!";
-
-    }
+  }
 }
 
 let tmContainer = document.getElementById("time");
 let time = 60;
 
 let tt = setInterval(() => {
-    time--
-    tmContainer.innerText = time
-}, 1000)
-
+  time--;
+  tmContainer.innerText = time;
+}, 1000);
 
 setTimeout(() => {
-    clearInterval(tt)
-    vail();
-    console.log("arrived")
-}, time * 1000)
+  clearInterval(tt);
+  vail();
+  console.log("arrived");
+}, time * 1000);
 
-start.addEventListener("click", function(){
-    table.style.transform = "rotate(360deg)";
-    table.style.visibility = "visible";
-})
+start.addEventListener("click", function () {
+  table.style.transform = "rotate(360deg)";
+  table.style.visibility = "visible";
+});
 
-table.addEventListener('keyup', (e) => {
-    let id = e.target.getAttribute("id");
-    let arrc = id.split("");
-    switch (e.target.value) {
-        case "1":
-            e.target.value = "";
-            arr[+arrc[0]].splice(+arrc[1], 1, "rect")
-            e.target.parentElement.children[1].children[0].src = "images/space_theme/aliens/1.png"
-            // e.target.parentElement.children[1].children[0].name = "rect"
+table.addEventListener("keyup", (e) => {
+  let id = e.target.getAttribute("id");
+  let arrc = id.split("");
+  switch (e.target.value) {
+    case "1":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "rect");
+      e.target.parentElement.children[1].children[0].src =
+        "images/space_theme/aliens/1.png";
+      // e.target.parentElement.children[1].children[0].name = "rect"
 
-            e.target.parentElement.children[1].children[0].style.display = "block"
-            break;
-        case "2":
-            e.target.value = "";
-            arr[+arrc[0]].splice(+arrc[1], 1, "circle")
-            e.target.parentElement.children[1].children[0].src = "images/space_theme/aliens/2.png"
-            e.target.parentElement.children[1].children[0].name = "circle"
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "2":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "circle");
+      e.target.parentElement.children[1].children[0].src =
+        "images/space_theme/aliens/2.png";
+      e.target.parentElement.children[1].children[0].name = "circle";
 
-            e.target.parentElement.children[1].children[0].style.display = "block"
-            break;
-        case "3":
-            e.target.value = "";
-            arr[+arrc[0]].splice(+arrc[1], 1, "triangle")
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "3":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "triangle");
 
-            e.target.parentElement.children[1].children[0].src = "images/space_theme/aliens/3.png"
-            e.target.parentElement.children[1].children[0].name = "triangle"
+      e.target.parentElement.children[1].children[0].src =
+        "images/space_theme/aliens/3.png";
+      e.target.parentElement.children[1].children[0].name = "triangle";
 
-            e.target.parentElement.children[1].children[0].style.display = "block"
-            break;
-        case "4":
-            e.target.value = "";
-            arr[+arrc[0]].splice(+arrc[1], 1, "star")
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "4":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "star");
 
-            e.target.parentElement.children[1].children[0].src = "images/space_theme/aliens/4.png"
-            e.target.parentElement.children[1].children[0].name = "triangle"
+      e.target.parentElement.children[1].children[0].src =
+        "images/space_theme/aliens/4.png";
+      e.target.parentElement.children[1].children[0].name = "triangle";
 
-            e.target.parentElement.children[1].children[0].style.display = "block"
-            break;
-        case "":
-            break;
-        default:
-            e.target.value = "";
-            console.log("enter valid number");
-            break;
-    }
-    // console.log(e.target.parentElement.children[1].children[0])
-})
-
-
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "":
+      break;
+    default:
+      e.target.value = "";
+      console.log("enter valid number");
+      break;
+  }
+  // console.log(e.target.parentElement.children[1].children[0])
+});
 
 /*---------------code for default img--------------*/
 function random_location() {
-    let ran = Math.floor(Math.random() * 4)
-    let ran2 = Math.floor(Math.random() * 4)
-    let idd = ran.toString() + ran2.toString();
-    let el = document.getElementById(idd);
-    el.nextElementSibling.children[0].style.display = "block";
-    el.disabled = true;
+  let ran = Math.floor(Math.random() * 4);
+  let ran2 = Math.floor(Math.random() * 4);
+  let idd = ran.toString() + ran2.toString();
+  let el = document.getElementById(idd);
+  el.nextElementSibling.children[0].src =`images/space_theme/aliens/${(ran + 1).toString()}.png`;
+  el.nextElementSibling.children[0].style.display = "block";
+  el.disabled = true;
 }
-random_location()
+random_location();
+
+//   let care = true;
+//   let state = true;
+// for (let k = 0; k < arr.length; k++) {
+//     for (let i = 0; i < arr[k].length; i++) {
+//         itr = 0;
+//         for (let j = 0; j < arr[k].length; j++) {
+//             if (arr[k][i] == arr[j][k]) {
+//                 itr++;
+//             }
+//             if (itr > 1) {
+//                 care = false
+//             }
+//         }
+//     }
+
+// }
+
+// for (let k = 0; k < arr.length; k++) {
+
+//     for (let i = 0; i < arr[k].length; i++) {
+//         itrator = 0;
+//         for (let j = 0; j < arr[k].length; j++) {
+//             if (arr[k][i] == arr[k][j]) {
+//                 itrator++;
+//             }
+//             if (itrator > 1) {
+//                 state = false
+//             }
+//         }
+//     }
+// }
+
+// for (let k = 0; k < arr.length; k++) {
+//     for (let i = 0; i < arr[k].length; i++) {
+//         itr = 0;
+//         for (let j = 0; j < arr[k].length; j++) {
+//             if (arr[k][i] == arr[j][k]) {
+//                 itr++;
+//             }
+//             if (itr > 1) {
+//                 care = false
+//             }
+//         }
+//     }
+
+// }
+// if (state && care) {
+//     player_state.innerText = "Success";
+// } else {
+//     player_state.innerText = "Fail!";
+
+// }
+// }
