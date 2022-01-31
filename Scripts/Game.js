@@ -48,7 +48,6 @@ let tt = setInterval(() => {
 setTimeout(() => {
   clearInterval(tt);
   vail();
-  console.log("arrived");
 }, time * 1000);
 
 start.addEventListener("click", function () {
@@ -57,8 +56,36 @@ start.addEventListener("click", function () {
 });
 
 table.addEventListener("keyup", (e) => {
+  let currentInput = document.activeElement;
+  let currentTd = currentInput.parentNode.parentNode;
+  let currentTr = currentTd.parentNode;
+  let index = Array.from(currentTr.children).indexOf(currentTd);
   let id = e.target.getAttribute("id");
   let arrc = id.split("");
+
+  switch (e.key) {
+    case "ArrowLeft":
+      // Left pressed
+      currentTd.previousElementSibling.getElementsByTagName("input")[0].focus();
+      break;
+    case "ArrowRight":
+      // Right pressed
+      currentTd.nextElementSibling.getElementsByTagName("input")[0].focus();
+      break;
+    case "ArrowUp":
+      // Up pressed
+      Array.from(currentTr.previousElementSibling.children)
+        [index].getElementsByTagName("input")[0]
+        .focus();
+      break;
+    case "ArrowDown":
+      // Down pressed
+      Array.from(currentTr.nextElementSibling.children)
+        [index].getElementsByTagName("input")[0]
+        .focus();
+      break;
+  }
+
   switch (e.target.value) {
     case "1":
       e.target.value = "";
@@ -97,22 +124,21 @@ table.addEventListener("keyup", (e) => {
       console.log("enter valid number");
       break;
   }
-  // console.log(e.target.parentElement.children[1].children[0])
 });
 
 /*---------------code for default img--------------*/
 function random_location() {
   let ran, ran2, idd, el;
   // for (let index = 0; index < 4; index++) {
-    ran = Math.floor(Math.random() * 4);
-    ran2 = Math.floor(Math.random() * 4);
-    idd = ran.toString() + ran2.toString();
-    el = document.getElementById(idd);
-    el.nextElementSibling.children[0].src = `${source}${(
-      ran + 1
-    ).toString()}.png`;
-    el.nextElementSibling.children[0].style.display = "block";
-    el.disabled = true;
+  ran = Math.floor(Math.random() * 4);
+  ran2 = Math.floor(Math.random() * 4);
+  idd = ran.toString() + ran2.toString();
+  el = document.getElementById(idd);
+  el.nextElementSibling.children[0].src = `${source}${(
+    ran + 1
+  ).toString()}.png`;
+  el.nextElementSibling.children[0].style.display = "block";
+  // el.disabled = true;
   // }
 }
 random_location();
