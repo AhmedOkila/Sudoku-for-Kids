@@ -116,7 +116,7 @@ body {
     /* background: palevioletred; */
 }
 
-#start-btn{
+#continue{
     padding: 5px 25px;
     padding: auto;
     font-size: 40px;
@@ -129,12 +129,12 @@ body {
     letter-spacing: 2px;
 }
 
-#start-btn:hover{
+#continue:hover{
     cursor: pointer;
     background: rgb(46, 46, 156)
 }
 
-#start-btn:active{
+#continue:active{
     background: rgb(0, 60, 255)
 }
 

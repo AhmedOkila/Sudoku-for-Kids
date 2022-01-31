@@ -1,12 +1,27 @@
 "use strict"
-let startButton = document.getElementById("start-btn")
+let contButton = document.getElementById("continue")
 let groupButtons = document.querySelectorAll("input[type=button]")
+let goTo = document.getElementById('anchor');
 
+let picGroup;
 
 for(let i=0; i<groupButtons.length; i++){
     groupButtons[i].addEventListener('click',function(e){
-        let clicedkBtn = e.target.id;
-        console.log(clicedkBtn);
-        localStorage.setItem('Group', clicedkBtn);
+        picGroup = e.target.id;
+        console.log(picGroup);
+        localStorage.setItem('Group', picGroup);
     })
+}
+
+contButton.onclick = function(){
+    switch (picGroup){
+        case "rocket_ships":
+        case "aliens":
+            goTo.href="../Game.html"
+            break;
+        case "Fish":
+        case "boats":
+            goTo.href="../Game2.html"
+            break;
+    }
 }

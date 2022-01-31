@@ -1,0 +1,19 @@
+-------------notes-----------
+
+(  (  30/1/2022  )  )
+
+------game page------
+1- timer starts before you press start.
+2- if timer ends
+2- start button need different style on clicking.
+2- start button not centered with the table. table maybe not centered in the page !!
+3- we can add HOME button to return to page 2 (entering name and choosing level)
+4- maybe reposition some buttons.
+
+
+-------page 3-------------
+1- display images of each group not completed
+2- update colors and fonts.
+
+-------- page 2 , page 3---------
+1- theme of form is different, update theme, colors and fonts
