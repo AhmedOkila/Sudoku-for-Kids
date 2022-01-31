@@ -3,6 +3,10 @@ window.addEventListener("load",function(){
     var usernameerror = this.document.getElementById("usernameerror");
     username.focus();
 
+    var selection = this.document.getElementById("levels");
+    var form = this.document.forms[0];
+
+
     username.addEventListener("blur",function() {
         if (!checkusername(this.value)) {
             usernameerror.style.display = "block";
@@ -16,7 +20,7 @@ window.addEventListener("load",function(){
         }
     });
 
-    this.document.forms[0].addEventListener("submit", function (e) {
+    form.addEventListener("submit", function (e) {
         var my_error = "";
         if (!checkusername(username.value)) {
           my_error += "Bad username, ";
@@ -26,10 +30,25 @@ window.addEventListener("load",function(){
         if (e.defaultPrevented) {
             alert(my_error);
         }
-    });
 
+        switch(selection.selectedIndex){
+            case 0:
+                form.action="/../Game.html";
+                break;
+            case 1:
+                form.action="/../Game2.html";;
+                break;
+            default:
+                alert("Wrong selection");
+                break;
+        }
+        
+
+    });
 });
+
 function checkusername(v) {
     //Checking if it has characheters only range from 4 to 20.
     return v.match(/^[a-zA-Z]{4,20}$/);
   }
+
