@@ -3,8 +3,7 @@ var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
 let selectionImages = document.querySelectorAll(".item img");
 
-let group = "Fish";
-// let group = "boats";
+let group = localStorage.getItem("Group");
 let source;
 source = `images/ocean_theme/${group}/`;
 for (let index = 0; index < selectionImages.length; index++) {

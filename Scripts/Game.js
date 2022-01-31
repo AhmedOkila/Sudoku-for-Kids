@@ -3,8 +3,8 @@ var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
 let selectionImages = document.querySelectorAll(".item img");
 
-let group = "aliens";
-// let group = "rocket_ships";
+let group = localStorage.getItem("Group");
+console.log(group);
 let source;
 source = `images/space_theme/${group}/`;
 
