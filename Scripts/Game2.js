@@ -3,13 +3,12 @@ var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
 let selectionImages = document.querySelectorAll(".item img");
 
-let group = "aliens";
-// let group = "rocket_ships";
+let group = "Fish";
+// let group = "boats";
 let source;
-source = `images/space_theme/${group}/`;
-
+source = `images/ocean_theme/${group}/`;
 for (let index = 0; index < selectionImages.length; index++) {
-  selectionImages[index].src = `${source}/${index + 1}.png`;
+  selectionImages[index].src = `${source}/${index + 1}.PNG`;
 }
 
 var arr = [
@@ -102,17 +101,14 @@ table.addEventListener("keyup", (e) => {
 
 /*---------------code for default img--------------*/
 function random_location() {
-  let ran, ran2, idd, el;
-  // for (let index = 0; index < 4; index++) {
-    ran = Math.floor(Math.random() * 4);
-    ran2 = Math.floor(Math.random() * 4);
-    idd = ran.toString() + ran2.toString();
-    el = document.getElementById(idd);
-    el.nextElementSibling.children[0].src = `${source}${(
-      ran + 1
-    ).toString()}.png`;
-    el.nextElementSibling.children[0].style.display = "block";
-    el.disabled = true;
-  // }
+  let ran = Math.floor(Math.random() * 4);
+  let ran2 = Math.floor(Math.random() * 4);
+  let idd = ran.toString() + ran2.toString();
+  let el = document.getElementById(idd);
+  el.nextElementSibling.children[0].src = `${source}${(
+    ran + 1
+  ).toString()}.PNG`;
+  el.nextElementSibling.children[0].style.display = "block";
+  el.disabled = true;
 }
 random_location();
