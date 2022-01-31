@@ -36,22 +36,20 @@ function vail() {
 }
 
 let tmContainer = document.getElementById("time");
-let time = 60;
+let time = 10;
 
-let tt = setInterval(() => {
-  time--;
-  tmContainer.innerText = time;
-}, 1000);
-
-setTimeout(() => {
-  clearInterval(tt);
-  vail();
-  console.log("arrived");
-}, time * 1000);
-
+let tt;
 start.addEventListener("click", function () {
   table.style.transform = "rotate(360deg)";
   table.style.visibility = "visible";
+  tt = setInterval(() => {
+    time--;
+    tmContainer.innerText = time;
+  }, 1000);
+  setTimeout(() => {
+      clearInterval(tt);
+      vail();
+    }, time * 1000);
 });
 
 table.addEventListener("keyup", (e) => {
@@ -99,15 +97,22 @@ table.addEventListener("keyup", (e) => {
 });
 
 /*---------------code for default img--------------*/
+let diff_img = [];
 function random_location() {
-  let ran = Math.floor(Math.random() * 4);
-  let ran2 = Math.floor(Math.random() * 4);
-  let idd = ran.toString() + ran2.toString();
-  let el = document.getElementById(idd);
-  el.nextElementSibling.children[0].src = `${source}${(
-    ran + 1
-  ).toString()}.PNG`;
-  el.nextElementSibling.children[0].style.display = "block";
-  el.disabled = true;
+    for(let i=0;i<arr.length;i++){
+        let ran = Math.floor(Math.random() * 4)
+        let ran2 = Math.floor(Math.random() * 4)
+        while(diff_img.indexOf(ran)>-1){
+            ran = Math.floor(Math.random() * 4)
+        }
+        let idd = ran.toString() + ran2.toString();
+        diff_img.push(ran);
+        let el = document.getElementById(idd);       
+        el.nextElementSibling.children[0].src = `${source}/${i + 1}.PNG`
+        el.nextElementSibling.children[0].style.display = "block";
+        el.disabled = true;
+    }
+    //`${source}/${index + 1}.PNG`;
 }
 random_location();
+

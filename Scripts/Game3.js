@@ -2,54 +2,27 @@ let start = document.getElementById("start");
 var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
 let selectionImages = document.querySelectorAll(".item img");
-let body = document.body;
-let timeContainerh1 = document.querySelector(".timeContainer h1");
-let nameContainer = document.querySelector(".nameContainer h1");
-let scoreContainer = document.querySelector(".scoreContainer h1");
-let ResultContainer = document.querySelector(".ResultContainer h1");
-let tableCells = document.querySelectorAll(".editValue");
-let ReferencesImages = document.querySelectorAll(".groupSelected .item");
 
 //let group = localStorage.getItem("Group");
-//let groupType = localStorage.getItem("groupType");
-// console.log(group);
-let group = "Fish";
-let groupType = "ocean_theme";
+let group = "aliens";
+console.log(group);
 let source;
-source = `images/${groupType}/${group}/`;
-
-(function groupSwitching() {
-  if (groupType == "ocean_theme") {
-    body.style.backgroundImage = "url(../images/ocean_theme/ocean3.jpg)";
-    start.style.backgroundColor = "#00405e";
-    start.style.border = "5px solid #011324";
-    timeContainerh1.style.backgroundColor = "#00405e";
-    timeContainerh1.style.border = "5px solid #011324";
-    nameContainer.style.backgroundColor = "#00405e";
-    nameContainer.style.border = "5px solid #011324";
-    scoreContainer.style.backgroundColor = "#00405e";
-    scoreContainer.style.border = "5px solid #011324";
-    ResultContainer.style.backgroundColor = "#00405e";
-    ResultContainer.style.border = "5px solid #011324";
-    for (let index = 0; index < tableCells.length; index++) {
-      tableCells[index].style.backgroundColor = "#00405e";
-      tableCells[index].style.border = "5px solid #011324";
-    }
-    for (let index = 0; index < ReferencesImages.length; index++) {
-      ReferencesImages[index].style.border = "5px solid #011324";
-    }
-  }
-})();
+source = `images/space_theme/${group}/`;
 
 for (let index = 0; index < selectionImages.length; index++) {
   selectionImages[index].src = `${source}/${index + 1}.png`;
 }
 
 var arr = [
-  ["", "", "", ""],
-  ["", "", "", ""],
-  ["", "", "", ""],
-  ["", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", ""],
 ];
 function vail() {
   for (let k = 0; k < arr.length; k++) {
@@ -60,7 +33,7 @@ function vail() {
         if (arr[k][i] == arr[k][j] || arr[k][i] == arr[j][k]) {
           itrator++;
         }
-        if (itrator >= 1) {
+        if (itrator > 1) {
           player_state.innerText = "Fail!";
         } else {
           player_state.innerText = "Success";
@@ -71,27 +44,21 @@ function vail() {
 }
 
 let tmContainer = document.getElementById("time");
-let time = 60;
+let time = 120;
 
 let tt;
-let Flag = 1;
-
 start.addEventListener("click", function () {
-
   table.style.transform = "rotate(360deg)";
   table.style.visibility = "visible";
-  if (Flag == 1) {
-    tt = setInterval(() => {
-      time--;
-      tmContainer.innerText = time;
-    }, 1000);
-    setTimeout(() => {
-      clearInterval(tt);
-      vail();
-    }, time * 1000);
-  }
-  Flag = 0;
+  tt = setInterval(() => {
+    time--;
+    tmContainer.innerText = time;
+  }, 1000);
 });
+setTimeout(() => {
+    clearInterval(tt);
+    vail();
+  }, time * 1000);
 
 table.addEventListener("keyup", (e) => {
   let currentInput = document.activeElement;
@@ -127,21 +94,21 @@ table.addEventListener("keyup", (e) => {
   switch (e.target.value) {
     case "1":
       e.target.value = "";
-      arr[arrc[0]].splice(arrc[1], 1, "1");
+      arr[arrc[0]].splice(arrc[1], 1, "rect");
       e.target.parentElement.children[1].children[0].src =
         selectionImages[0].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
       break;
     case "2":
       e.target.value = "";
-      arr[arrc[0]].splice(arrc[1], 1, "2");
+      arr[arrc[0]].splice(arrc[1], 1, "circle");
       e.target.parentElement.children[1].children[0].src =
         selectionImages[1].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
       break;
     case "3":
       e.target.value = "";
-      arr[arrc[0]].splice(arrc[1], 1, "3");
+      arr[arrc[0]].splice(arrc[1], 1, "triangle");
 
       e.target.parentElement.children[1].children[0].src =
         selectionImages[2].src;
@@ -149,10 +116,50 @@ table.addEventListener("keyup", (e) => {
       break;
     case "4":
       e.target.value = "";
-      arr[arrc[0]].splice(arrc[1], 1, "4");
+      arr[arrc[0]].splice(arrc[1], 1, "star");
 
       e.target.parentElement.children[1].children[0].src =
         selectionImages[3].src;
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "5":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "oval");
+
+      e.target.parentElement.children[1].children[0].src =
+        selectionImages[4].src;
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "6":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "PARABOLIC");
+
+      e.target.parentElement.children[1].children[0].src =
+        selectionImages[5].src;
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "7":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "ELLIPSE");
+
+      e.target.parentElement.children[1].children[0].src =
+        selectionImages[6].src;
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "8":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "TRAPEZOID");
+
+      e.target.parentElement.children[1].children[0].src =
+        selectionImages[7].src;
+      e.target.parentElement.children[1].children[0].style.display = "block";
+      break;
+    case "9":
+      e.target.value = "";
+      arr[arrc[0]].splice(arrc[1], 1, "CIRCULARSECTION");
+
+      e.target.parentElement.children[1].children[0].src =
+        selectionImages[8].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
       break;
     case "":
@@ -165,21 +172,18 @@ table.addEventListener("keyup", (e) => {
 });
 
 /*---------------code for default img--------------*/
-let diff_img = [];
 function random_location() {
-    for(let i=0;i<arr.length;i++){
-        let ran = Math.floor(Math.random() * 4)
-        let ran2 = Math.floor(Math.random() * 4)
-        while(diff_img.indexOf(ran)>-1){
-            ran = Math.floor(Math.random() * 4)
-        }
-        let idd = ran.toString() + ran2.toString();
-        diff_img.push(ran);
-        let el = document.getElementById(idd);  
-        arr[ran].splice(ran2, 1, (i+1).toString())     
-        el.nextElementSibling.children[0].src = `${source}/${i + 1}.PNG`
-        el.nextElementSibling.children[0].style.display = "block";
-        el.disabled = true;
-    }
+  let ran, ran2, idd, el;
+  //for (let index = 0; index < 9; index++) {
+    ran = Math.floor(Math.random() * 9);
+    ran2 = Math.floor(Math.random() * 9);
+    idd = ran.toString() + ran2.toString();
+    el = document.getElementById(idd);
+    el.nextElementSibling.children[0].src = `${source}${(
+      ran + 1
+    ).toString()}.png`;
+    el.nextElementSibling.children[0].style.display = "block";
+    el.disabled = true;
+ // }
 }
 random_location();
