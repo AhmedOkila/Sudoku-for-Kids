@@ -57,10 +57,13 @@ function vail() {
       itrator = 0;
       itr = 0;
       for (let j = 0; j < arr[k].length; j++) {
-        if (arr[k][i] == arr[k][j] || arr[k][i] == arr[j][k]) {
+        if (arr[k][i] == arr[k][j]) {
           itrator++;
         }
-        if (itrator >= 1) {
+        if (arr[k][i] == arr[j][k]) {
+          itr++;
+        }
+        if (itrator > 1 || itr > 1) {
           player_state.innerText = "Fail!";
         } else {
           player_state.innerText = "Success";
@@ -71,13 +74,12 @@ function vail() {
 }
 
 let tmContainer = document.getElementById("time");
-let time = 60;
+let time = 40;
 
 let tt;
 let Flag = 1;
 
 start.addEventListener("click", function () {
-
   table.style.transform = "rotate(360deg)";
   table.style.visibility = "visible";
   if (Flag == 1) {
@@ -166,20 +168,30 @@ table.addEventListener("keyup", (e) => {
 
 /*---------------code for default img--------------*/
 let diff_img = [];
+let diff_img_col = [];
+
 function random_location() {
-    for(let i=0;i<arr.length;i++){
-        let ran = Math.floor(Math.random() * 4)
-        let ran2 = Math.floor(Math.random() * 4)
-        while(diff_img.indexOf(ran)>-1){
-            ran = Math.floor(Math.random() * 4)
-        }
-        let idd = ran.toString() + ran2.toString();
-        diff_img.push(ran);
-        let el = document.getElementById(idd);  
-        arr[ran].splice(ran2, 1, (i+1).toString())     
-        el.nextElementSibling.children[0].src = `${source}/${i + 1}.PNG`
-        el.nextElementSibling.children[0].style.display = "block";
-        el.disabled = true;
+  for (let i = 0; i < arr.length; i++) {
+    let ran = Math.floor(Math.random() * 4);
+    let ran2 = Math.floor(Math.random() * 4);
+    while (diff_img.indexOf(ran) > -1 || diff_img_col.indexOf(ran2) > -1) {
+      if (diff_img.indexOf(ran) > -1) {
+        ran = Math.floor(Math.random() * 4);
+      } else {
+        ran2 = Math.floor(Math.random() * 4);
+      }
     }
+    let idd = ran.toString() + ran2.toString();
+    diff_img.push(ran);
+    diff_img_col.push(ran2);
+    let el = document.getElementById(idd);
+    arr[ran].splice(ran2, 1, (i + 1).toString());
+    el.nextElementSibling.children[0].src = `${source}/${i + 1}.PNG`;
+    el.nextElementSibling.children[0].style.display = "block";
+    el.disabled = true;
+    console.log(`source: ${source}`);
+    console.log(`group: ${group}`);
+  }
 }
+
 random_location();
