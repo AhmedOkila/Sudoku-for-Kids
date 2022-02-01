@@ -2,8 +2,6 @@ window.addEventListener("load",function(){
     var username = this.document.getElementById("username");
     var usernameerror = this.document.getElementById("usernameerror");
     username.focus();
-
-    var selection = this.document.getElementById("levels");
     var form = this.document.forms[0];
 
 
@@ -30,20 +28,6 @@ window.addEventListener("load",function(){
         if (e.defaultPrevented) {
             alert(my_error);
         }
-
-        switch(selection.selectedIndex){
-            case 0:
-                form.action="/../Game.html";
-                break;
-            case 1:
-                form.action="/../Game2.html";;
-                break;
-            default:
-                alert("Wrong selection");
-                break;
-        }
-        
-
     });
 });
 
