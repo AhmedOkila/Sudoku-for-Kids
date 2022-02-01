@@ -95,7 +95,7 @@ function actionOnResult() {
     popup.style.display = "block";
     message.innerText = "FAIL !";
     start.disabled = true;
-  }
+  }//else if success
 }
 
 //play again button
