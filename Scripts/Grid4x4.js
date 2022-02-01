@@ -133,23 +133,44 @@ table.addEventListener("keyup", (e) => {
   switch (e.key) {
     case "ArrowLeft":
       // Left pressed
-      currentTd.previousElementSibling.getElementsByTagName("input")[0].focus();
+      if (!(currentTd.previousElementSibling.getElementsByTagName("input")[0]).disabled) {
+        currentTd.previousElementSibling.getElementsByTagName("input")[0].focus();
+      }
+      else
+      {
+        currentTd.previousElementSibling.previousElementSibling.getElementsByTagName("input")[0].focus();
+      }
       break;
     case "ArrowRight":
       // Right pressed
-      currentTd.nextElementSibling.getElementsByTagName("input")[0].focus();
+      if (!(currentTd.nextElementSibling.getElementsByTagName("input")[0]).disabled) {
+        currentTd.nextElementSibling.getElementsByTagName("input")[0].focus();
+      }
+      else
+      {
+        currentTd.nextElementSibling.nextElementSibling.getElementsByTagName("input")[0].focus();
+      }
       break;
     case "ArrowUp":
       // Up pressed
-      Array.from(currentTr.previousElementSibling.children)
-        [index].getElementsByTagName("input")[0]
-        .focus();
+      if (!(Array.from(currentTr.previousElementSibling.children)[index].getElementsByTagName("input")[0]).disabled) {
+        Array.from(currentTr.previousElementSibling.children)[index].getElementsByTagName("input")[0].focus();
+      }
+      else
+      {
+        Array.from(currentTr.previousElementSibling.previousElementSibling.children)[index].getElementsByTagName("input")[0].focus();
+      }
       break;
     case "ArrowDown":
       // Down pressed
-      Array.from(currentTr.nextElementSibling.children)
-        [index].getElementsByTagName("input")[0]
-        .focus();
+      if (!(Array.from(currentTr.nextElementSibling.children)[index].getElementsByTagName("input")[0]).disabled) {
+        Array.from(currentTr.nextElementSibling.children)[index].getElementsByTagName("input")[0].focus();
+      }
+      else
+      {
+        Array.from(currentTr.nextElementSibling.nextElementSibling.children)[index].getElementsByTagName("input")[0].focus();
+      }
+     
       break;
   }
 
