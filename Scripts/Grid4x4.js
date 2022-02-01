@@ -1,3 +1,13 @@
+import { getCookie } from "./Cookies.js"
+
+// console.log("alohaaaaa"+getCookie("username"))
+var userName = getCookie("username");
+var level = getCookie("level");
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var exacttime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var highscore=0;
+
 let start = document.getElementById("start");
 var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
@@ -56,8 +66,8 @@ function vail() {
   let state = true;
   for (let k = 0; k < arr.length; k++) {
     for (let i = 0; i < arr[k].length; i++) {
-      itrator = 0;
-      itr = 0;
+      var itrator = 0;
+      var itr = 0;
       for (let j = 0; j < arr[k].length; j++) {
         if (arr[k][i] == arr[k][j]) {
           itrator++;
@@ -132,7 +142,10 @@ function actionOnSuccess() {
       message.innerText = "SUCCESS";
       start.disabled = true;
       player_state.innerText = "Success";
+      saveIntoLocalStorage(); //to be deleted
       clearInterval(tt);
+      //setHighScore();
+      saveIntoLocalStorage();
     } 
   }
 }
@@ -301,6 +314,28 @@ function random_location() {
     console.log(`source: ${source}`);
     console.log(`group: ${group}`);
   }
+}
+
+// function setHighScore() {
+//   var existing = localStorage.getItem(userName);
+//   var currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore
+//   if(time > currentHighScore){
+//     highscore = currentHighScore;
+//     saveIntoLocalStorage();
+//     console.log("saved");
+//   }
+// }
+
+let userInfo ={//userinfo as object for local storage
+  username: userName,
+  score: time,
+  lastplayed: date+":"+exacttime,
+  highscore: highscore,
+  level: level
+};
+
+function saveIntoLocalStorage() {
+  localStorage.setItem(userName,JSON.stringify(userInfo));
 }
 
 random_location();
