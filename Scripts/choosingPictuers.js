@@ -40,6 +40,7 @@ contButton.onclick = function () {
     case "aliens":
     case "Fish":
     case "boats":
+      //entering cookies
         goTo.href = "../HTML/Grid4x4.html";
         break;
     default :
