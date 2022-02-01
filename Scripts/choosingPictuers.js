@@ -1,4 +1,5 @@
 // "use strict"
+import { getCookie } from "./Cookies.js";
 
 let contButton = document.getElementById("continue");
 let groupButtons = document.querySelectorAll('input[type="radio"]');
@@ -40,7 +41,7 @@ contButton.onclick = function () {
     case "aliens":
     case "Fish":
     case "boats":
-      //entering cookies
+      //entering cookies use getCookie("name"); for name to be username,level and it well return the result.
         goTo.href = "../HTML/Grid4x4.html";
         break;
     default :
