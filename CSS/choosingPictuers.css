@@ -54,7 +54,39 @@ body {
     margin-top: 20%;
 }
 
-.theme-btn{
+input {
+    /* visibility:collapse; */
+    display: none;
+}
+
+label {
+    cursor: pointer;
+    width: 145px;
+    height: 43px;
+    font-size: 22px;
+    font-weight:bolder;
+    margin-top: 30px;
+    border-radius: 7px;
+    border: 5px solid #0e87f8;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 2px;
+    background: white;
+    text-align: center;
+}
+
+label:hover{
+    background:rgb(180, 180, 250);
+}
+
+input:checked + label {
+    width: 160px;
+    height: 60px;
+    font-size: 27px;
+    color: white;
+    background:rgb(46, 46, 156);
+}
+
+/* .theme-btn{
     width: 145px;
     height: 43px;
     font-size: 22px;
@@ -75,14 +107,14 @@ body {
 }
 
 
-.theme-btn:focus{
+.theme-btn:checked{
     cursor: pointer;
     width: 160px;
     height: 60px;
     font-size: 27px;
     color: white;
     background:rgb(46, 46, 156)
-}
+} */
 
 .theme-name{
     position: absolute;
@@ -135,7 +167,8 @@ body {
 }
 
 #continue:active{
-    background: rgb(0, 60, 255)
+    background: rgb(0, 60, 255);
+    padding: 2px 22px;
 }
 
 table{

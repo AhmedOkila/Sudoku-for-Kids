@@ -13,8 +13,8 @@ let ReferencesImages = document.querySelectorAll(".groupSelected .item");
 //let group = localStorage.getItem("Group");
 //let groupType = localStorage.getItem("groupType");
 // console.log(group);
-let group = "Fish";
-let groupType = "ocean_theme";
+let group = localStorage.getItem("Group");
+let groupType = localStorage.getItem("groupType");
 let source;
 source = `../images/${groupType}/${group}/`;
 
@@ -74,10 +74,27 @@ function vail() {
 }
 
 let tmContainer = document.getElementById("time");
-let time = 60;
+//changing time to try popup
+let time = 5;
 
 let tt;
 let Flag = 1;
+
+//action based on win or lose
+function actionOnResult() {
+  if (player_state.innerText == "Fail!") {
+    popup.className = "fail";
+    popup.style.display = "block";
+    message.innerText = "FAIL !";
+    start.disabled = true;
+  }
+}
+
+//play again button
+//check if the sent variables of picture and picgroup are still available !!
+playagain.onclick = function () {
+  window.location.reload();
+};
 
 start.addEventListener("click", function () {
   table.style.transform = "rotate(360deg)";
@@ -90,6 +107,8 @@ start.addEventListener("click", function () {
     setTimeout(() => {
       clearInterval(tt);
       vail();
+      //for popup
+      actionOnResult();
     }, time * 1000);
   }
   Flag = 0;
