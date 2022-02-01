@@ -88,6 +88,26 @@ let time = 60;
 let tt;
 let Flag = 1;
 
+/* ****check if array is empty**** */
+function checkIfEmpty() {
+  let notEmpty = false;
+  // loop the outer array
+  for (let i = 0; i < arr.length; i++) {
+    // get the size of the inner array
+    var innerArrayLength = arr[i].length;
+    // loop the inner array
+    for (let j = 0; j < innerArrayLength; j++) {
+      if (arr[i][j]) {
+        notEmpty = true;
+      } else {
+        notEmpty = false;
+      }
+    }
+  }
+}
+
+// function actionOnSuccess(){}
+
 //action based on win or lose
 function actionOnResult() {
   if (player_state.innerText == "Fail!") {
@@ -95,7 +115,7 @@ function actionOnResult() {
     popup.style.display = "block";
     message.innerText = "FAIL !";
     start.disabled = true;
-  }//else if success
+  } //else if success not here, with in insert event handeling
 }
 
 //play again button

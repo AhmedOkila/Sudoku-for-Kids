@@ -43,6 +43,8 @@ contButton.onclick = function () {
     case "boats":
       //entering cookies use getCookie("name"); for name to be username,level and it well return the result.
         goTo.href = "../HTML/Grid4x4.html";
+        // let level = getCookie("level");
+        // console.log(level);
         break;
     default :
         alert("you must choose a picture group !")
