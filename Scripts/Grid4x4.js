@@ -52,6 +52,8 @@ var arr = [
   ["", "", "", ""],
 ];
 function vail() {
+  let care = true;
+  let state = true;
   for (let k = 0; k < arr.length; k++) {
     for (let i = 0; i < arr[k].length; i++) {
       itrator = 0;
@@ -63,19 +65,25 @@ function vail() {
         if (arr[k][i] == arr[j][k]) {
           itr++;
         }
-        if (itrator > 1 || itr > 1) {
-          player_state.innerText = "Fail!";
-        } else {
-          player_state.innerText = "Success";
+        if (itrator > 1) {
+          state = false;
+        }
+        if (itr > 1) {
+          care = false;
         }
       }
     }
+  }
+  if (state && care) {
+    player_state.innerText = "Success";
+  } else {
+    player_state.innerText = "Fail!";
   }
 }
 
 let tmContainer = document.getElementById("time");
 //changing time to try popup
-let time = 5;
+let time = 60;
 
 let tt;
 let Flag = 1;
