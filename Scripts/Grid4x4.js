@@ -16,7 +16,7 @@ let ReferencesImages = document.querySelectorAll(".groupSelected .item");
 let group = "Fish";
 let groupType = "ocean_theme";
 let source;
-source = `images/${groupType}/${group}/`;
+source = `../images/${groupType}/${group}/`;
 
 (function groupSwitching() {
   if (groupType == "ocean_theme") {
@@ -74,7 +74,7 @@ function vail() {
 }
 
 let tmContainer = document.getElementById("time");
-let time = 40;
+let time = 60;
 
 let tt;
 let Flag = 1;

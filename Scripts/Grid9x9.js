@@ -7,7 +7,7 @@ let selectionImages = document.querySelectorAll(".item img");
 let group = "aliens";
 console.log(group);
 let source;
-source = `images/space_theme/${group}/`;
+source = `../images/space_theme/${group}/`;
 
 for (let index = 0; index < selectionImages.length; index++) {
   selectionImages[index].src = `${source}/${index + 1}.png`;
@@ -30,10 +30,13 @@ function vail() {
       itrator = 0;
       itr = 0;
       for (let j = 0; j < arr[k].length; j++) {
-        if (arr[k][i] == arr[k][j] || arr[k][i] == arr[j][k]) {
+        if (arr[k][i] == arr[k][j]) {
           itrator++;
         }
-        if (itrator > 1) {
+        if (arr[k][i] == arr[j][k]) {
+          itr++;
+        }
+        if (itrator > 1 || itr > 1) {
           player_state.innerText = "Fail!";
         } else {
           player_state.innerText = "Success";
@@ -47,18 +50,23 @@ let tmContainer = document.getElementById("time");
 let time = 120;
 
 let tt;
+let Flag = 1;
+
 start.addEventListener("click", function () {
   table.style.transform = "rotate(360deg)";
   table.style.visibility = "visible";
-  tt = setInterval(() => {
-    time--;
-    tmContainer.innerText = time;
-  }, 1000);
+  if (Flag == 1) {
+    tt = setInterval(() => {
+      time--;
+      tmContainer.innerText = time;
+    }, 1000);
+    setTimeout(() => {
+      clearInterval(tt);
+      vail();
+    }, time * 1000);
+  }
+  Flag = 0;
 });
-setTimeout(() => {
-    clearInterval(tt);
-    vail();
-  }, time * 1000);
 
 table.addEventListener("keyup", (e) => {
   let currentInput = document.activeElement;
@@ -172,18 +180,31 @@ table.addEventListener("keyup", (e) => {
 });
 
 /*---------------code for default img--------------*/
+let diff_img = [];
+let diff_img_col = [];
+
 function random_location() {
-  let ran, ran2, idd, el;
-  //for (let index = 0; index < 9; index++) {
-    ran = Math.floor(Math.random() * 9);
-    ran2 = Math.floor(Math.random() * 9);
-    idd = ran.toString() + ran2.toString();
-    el = document.getElementById(idd);
-    el.nextElementSibling.children[0].src = `${source}${(
-      ran + 1
-    ).toString()}.png`;
+  for (let i = 0; i < arr.length; i++) {
+    let ran = Math.floor(Math.random() * 9);
+    let ran2 = Math.floor(Math.random() * 9);
+    while (diff_img.indexOf(ran) > -1 || diff_img_col.indexOf(ran2) > -1) {
+      if (diff_img.indexOf(ran) > -1) {
+        ran = Math.floor(Math.random() * 9);
+      } else {
+        ran2 = Math.floor(Math.random() * 9);
+      }
+    }
+    let idd = ran.toString() + ran2.toString();
+    diff_img.push(ran);
+    diff_img_col.push(ran2);
+    let el = document.getElementById(idd);
+    arr[ran].splice(ran2, 1, (i + 1).toString());
+    el.nextElementSibling.children[0].src = `${source}/${i + 1}.PNG`;
     el.nextElementSibling.children[0].style.display = "block";
     el.disabled = true;
- // }
+    console.log(`source: ${source}`);
+    console.log(`group: ${group}`);
+  }
 }
+
 random_location();
