@@ -246,11 +246,11 @@ table {
   margin: 0 3px;
 }
 
-.fail{
+.window{
   background: #02103d;
   
-  border: 5px solid crimson;
-  color: red;
+  /* border: 5px solid crimson;
+  color: red; */
   border-radius: 5%;
   height: 400px;
   width: 400px;

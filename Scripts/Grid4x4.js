@@ -75,6 +75,16 @@ function vail() {
     }
   }
   if (state && care) {
+    //player_state.innerText = "Success";
+    return true;
+  } else {
+    //player_state.innerText = "Fail!";
+    return false;
+  }
+}
+
+function changeStatus(isValid) {
+  if (isValid) {
     player_state.innerText = "Success";
   } else {
     player_state.innerText = "Fail!";
@@ -83,14 +93,14 @@ function vail() {
 
 let tmContainer = document.getElementById("time");
 //changing time to try popup
-let time = 60;
+let time = 100;
 
 let tt;
 let Flag = 1;
 
 /* ****check if array is empty**** */
 function checkIfEmpty() {
-  let notEmpty = false;
+  let checker = 0;
   // loop the outer array
   for (let i = 0; i < arr.length; i++) {
     // get the size of the inner array
@@ -98,24 +108,52 @@ function checkIfEmpty() {
     // loop the inner array
     for (let j = 0; j < innerArrayLength; j++) {
       if (arr[i][j]) {
-        notEmpty = true;
       } else {
-        notEmpty = false;
+        checker++;
       }
     }
+  }
+  if (checker > 0) {
+    return false;
+  } else {
+    return true;
   }
 }
 
 // function actionOnSuccess(){}
+function actionOnSuccess() {
+  if (checkIfEmpty()) {
+    if (vail()) {
+      //success
+      popup.className = "window";
+      popup.style.display = "block";
+      popup.style.border = "5px solid green";
+      popup.style.color = "green";
+      message.innerText = "SUCCESS";
+      start.disabled = true;
+      player_state.innerText = "Success";
+      clearInterval(tt);
+    } 
+  }
+}
 
 //action based on win or lose
 function actionOnResult() {
   if (player_state.innerText == "Fail!") {
-    popup.className = "fail";
+    popup.className = "window";
     popup.style.display = "block";
+    popup.style.border = "5px solid crimson";
+    popup.style.color = "red";
     message.innerText = "FAIL !";
     start.disabled = true;
-  } //else if success not here, with in insert event handeling
+  } else {
+    popup.className = "window";
+    popup.style.display = "block";
+    popup.style.border = "5px solid green";
+    popup.style.color = "green";
+    message.innerText = "SUCCESS";
+    start.disabled = true;
+  }
 }
 
 //play again button
@@ -134,7 +172,8 @@ start.addEventListener("click", function () {
     }, 1000);
     setTimeout(() => {
       clearInterval(tt);
-      vail();
+      //vail();
+      changeStatus(vail());
       //for popup
       actionOnResult();
     }, time * 1000);
@@ -201,6 +240,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[0].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess();
       break;
     case "2":
       e.target.value = "";
@@ -208,22 +248,23 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[1].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess();
       break;
     case "3":
       e.target.value = "";
       arr[arrc[0]].splice(arrc[1], 1, "3");
-
       e.target.parentElement.children[1].children[0].src =
         selectionImages[2].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess();
       break;
     case "4":
       e.target.value = "";
       arr[arrc[0]].splice(arrc[1], 1, "4");
-
       e.target.parentElement.children[1].children[0].src =
         selectionImages[3].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess();
       break;
     case "":
       break;
