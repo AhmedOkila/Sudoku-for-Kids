@@ -35,4 +35,11 @@ function checkusername(v) {
     //Checking if it has characheters only range from 4 to 20.
     return v.match(/^[a-zA-Z]{4,20}$/);
   }
-
+function makeCookie(){
+    var userName = document.getElementById("username").value;
+    var level = document.getElementById("levels").value;
+    var expireYear = new Date().getFullYear() + 1; //This year + 1
+    
+    document.cookie = "username="+userName+";expires="+expireYear; //e.g. username=nostalk;expires=2023
+    document.cookie = "level="+level+";expires="+expireYear; //e.g. level=1;expires=2023
+}
