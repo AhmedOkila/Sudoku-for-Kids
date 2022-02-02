@@ -7,7 +7,7 @@ var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var exacttime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 var highscore=0;
-
+let scoreTime;
 let start = document.getElementById("start");
 var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
@@ -15,7 +15,9 @@ let selectionImages = document.querySelectorAll(".item img");
 let body = document.body;
 let timeContainerh1 = document.querySelector(".timeContainer h1");
 let nameContainer = document.querySelector(".nameContainer h1");
+let useredit = document.getElementById("useredit");
 let scoreContainer = document.querySelector(".scoreContainer h1");
+let scoreedit = document.getElementById("scoreedit");
 let ResultContainer = document.querySelector(".ResultContainer h1");
 let tableCells = document.querySelectorAll(".editValue");
 let ReferencesImages = document.querySelectorAll(".groupSelected .item");
@@ -27,6 +29,14 @@ let group = localStorage.getItem("Group");
 let groupType = localStorage.getItem("groupType");
 let source;
 source = `../images/${groupType}/${group}/`;
+useredit.innerHTML=getCookie("username"); //fitting the username into place
+let currentHighScore=0
+if(localStorage.getItem(userName)){//if the user exist fetch his highscore
+currentHighScore=JSON.parse(localStorage.getItem(userName)).highscore;
+}
+scoreedit.innerHTML = currentHighScore; //fitting the new highscore saved last time
+
+
 
 (function groupSwitching() {
   if (groupType == "ocean_theme") {
@@ -142,10 +152,7 @@ function actionOnSuccess() {
       message.innerText = "SUCCESS";
       start.disabled = true;
       player_state.innerText = "Success";
-      saveIntoLocalStorage(); //to be deleted
       clearInterval(tt);
-      //setHighScore();
-      saveIntoLocalStorage();
     } 
   }
 }
@@ -172,8 +179,14 @@ function actionOnResult() {
 //play again button
 //check if the sent variables of picture and picgroup are still available !!
 playagain.onclick = function () {
+  saveIntoLocalStorage();
+  setHighScore();
   window.location.reload();
 };
+home.onclick = function () {
+  saveIntoLocalStorage();
+  setHighScore();
+}
 
 start.addEventListener("click", function () {
   table.style.transform = "rotate(360deg)";
@@ -182,6 +195,7 @@ start.addEventListener("click", function () {
     tt = setInterval(() => {
       time--;
       tmContainer.innerText = time;
+      scoreTime=time;
     }, 1000);
     setTimeout(() => {
       clearInterval(tt);
@@ -316,15 +330,22 @@ function random_location() {
   }
 }
 
-// function setHighScore() {
-//   var existing = localStorage.getItem(userName);
-//   var currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore
-//   if(time > currentHighScore){
-//     highscore = currentHighScore;
-//     saveIntoLocalStorage();
-//     console.log("saved");
-//   }
-// }
+function setHighScore() {
+  var currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore
+  if(scoreTime > currentHighScore){
+    highscore = scoreTime;
+    let newUserInfo ={//userinfo as object for local storage
+      username: userName,
+      score: time,
+      lastplayed: date+":"+exacttime,
+      highscore: highscore,
+      level: level
+    };
+    localStorage.setItem(userName,JSON.stringify(newUserInfo));
+    console.log("saved from inside if condition on the set highscore");
+  }
+  console.log("saved from outside if condition on the set highscore");
+}
 
 let userInfo ={//userinfo as object for local storage
   username: userName,
@@ -337,5 +358,9 @@ let userInfo ={//userinfo as object for local storage
 function saveIntoLocalStorage() {
   localStorage.setItem(userName,JSON.stringify(userInfo));
 }
+
+// function cheat(){
+//   arr=[1,2,3,4],[2,1,3,4],[3,2,1,4],[4,3,2,1];
+// }
 
 random_location();
