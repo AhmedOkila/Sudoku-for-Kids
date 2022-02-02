@@ -247,8 +247,7 @@ table {
 }
 
 .window{
-  background: #02103d;
-  
+  /* background: rgba(245, 176, 176 , 0.6); */
   /* border: 5px solid crimson;
   color: red; */
   border-radius: 5%;

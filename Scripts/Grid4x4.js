@@ -83,8 +83,9 @@ function vail() {
   }
 }
 
-function changeStatus(isValid) {
-  if (isValid) {
+//change inner text of result
+function changeStatus(isSuccessful) {
+  if (isSuccessful) {
     player_state.innerText = "Success";
   } else {
     player_state.innerText = "Fail!";
@@ -93,13 +94,13 @@ function changeStatus(isValid) {
 
 let tmContainer = document.getElementById("time");
 //changing time to try popup
-let time = 100;
+let time = 5;
 
 let tt;
 let Flag = 1;
 
-/* ****check if array is empty**** */
-function checkIfEmpty() {
+/* ****check if array is full**** */
+function checkIfFull() {
   let checker = 0;
   // loop the outer array
   for (let i = 0; i < arr.length; i++) {
@@ -114,15 +115,17 @@ function checkIfEmpty() {
     }
   }
   if (checker > 0) {
+    //empty
     return false;
   } else {
+    //full
     return true;
   }
 }
 
 // function actionOnSuccess(){}
 function actionOnSuccess() {
-  if (checkIfEmpty()) {
+  if (checkIfFull()) {
     if (vail()) {
       //success
       popup.className = "window";
@@ -130,34 +133,28 @@ function actionOnSuccess() {
       popup.style.border = "5px solid green";
       popup.style.color = "green";
       message.innerText = "SUCCESS";
+      popup.style.backgroundColor = "rgba(155, 242, 162 , 0.7)";
       start.disabled = true;
       player_state.innerText = "Success";
       clearInterval(tt);
-    } 
+    }
   }
 }
 
-//action based on win or lose
-function actionOnResult() {
-  if (player_state.innerText == "Fail!") {
+//action on time out
+function actionOnTimeOut() {
+  if (checkIfFull() || !vail()) {
     popup.className = "window";
     popup.style.display = "block";
     popup.style.border = "5px solid crimson";
     popup.style.color = "red";
+    popup.style.backgroundColor = "rgba(245, 176, 176 , 0.7)";
     message.innerText = "FAIL !";
-    start.disabled = true;
-  } else {
-    popup.className = "window";
-    popup.style.display = "block";
-    popup.style.border = "5px solid green";
-    popup.style.color = "green";
-    message.innerText = "SUCCESS";
     start.disabled = true;
   }
 }
 
 //play again button
-//check if the sent variables of picture and picgroup are still available !!
 playagain.onclick = function () {
   window.location.reload();
 };
@@ -175,7 +172,7 @@ start.addEventListener("click", function () {
       //vail();
       changeStatus(vail());
       //for popup
-      actionOnResult();
+      actionOnTimeOut();
     }, time * 1000);
   }
   Flag = 0;
@@ -192,44 +189,65 @@ table.addEventListener("keyup", (e) => {
   switch (e.key) {
     case "ArrowLeft":
       // Left pressed
-      if (!(currentTd.previousElementSibling.getElementsByTagName("input")[0]).disabled) {
-        currentTd.previousElementSibling.getElementsByTagName("input")[0].focus();
-      }
-      else
-      {
-        currentTd.previousElementSibling.previousElementSibling.getElementsByTagName("input")[0].focus();
+      if (
+        !currentTd.previousElementSibling.getElementsByTagName("input")[0]
+          .disabled
+      ) {
+        currentTd.previousElementSibling
+          .getElementsByTagName("input")[0]
+          .focus();
+      } else {
+        currentTd.previousElementSibling.previousElementSibling
+          .getElementsByTagName("input")[0]
+          .focus();
       }
       break;
     case "ArrowRight":
       // Right pressed
-      if (!(currentTd.nextElementSibling.getElementsByTagName("input")[0]).disabled) {
+      if (
+        !currentTd.nextElementSibling.getElementsByTagName("input")[0].disabled
+      ) {
         currentTd.nextElementSibling.getElementsByTagName("input")[0].focus();
-      }
-      else
-      {
-        currentTd.nextElementSibling.nextElementSibling.getElementsByTagName("input")[0].focus();
+      } else {
+        currentTd.nextElementSibling.nextElementSibling
+          .getElementsByTagName("input")[0]
+          .focus();
       }
       break;
     case "ArrowUp":
       // Up pressed
-      if (!(Array.from(currentTr.previousElementSibling.children)[index].getElementsByTagName("input")[0]).disabled) {
-        Array.from(currentTr.previousElementSibling.children)[index].getElementsByTagName("input")[0].focus();
-      }
-      else
-      {
-        Array.from(currentTr.previousElementSibling.previousElementSibling.children)[index].getElementsByTagName("input")[0].focus();
+      if (
+        !Array.from(currentTr.previousElementSibling.children)[
+          index
+        ].getElementsByTagName("input")[0].disabled
+      ) {
+        Array.from(currentTr.previousElementSibling.children)
+          [index].getElementsByTagName("input")[0]
+          .focus();
+      } else {
+        Array.from(
+          currentTr.previousElementSibling.previousElementSibling.children
+        )
+          [index].getElementsByTagName("input")[0]
+          .focus();
       }
       break;
     case "ArrowDown":
       // Down pressed
-      if (!(Array.from(currentTr.nextElementSibling.children)[index].getElementsByTagName("input")[0]).disabled) {
-        Array.from(currentTr.nextElementSibling.children)[index].getElementsByTagName("input")[0].focus();
+      if (
+        !Array.from(currentTr.nextElementSibling.children)[
+          index
+        ].getElementsByTagName("input")[0].disabled
+      ) {
+        Array.from(currentTr.nextElementSibling.children)
+          [index].getElementsByTagName("input")[0]
+          .focus();
+      } else {
+        Array.from(currentTr.nextElementSibling.nextElementSibling.children)
+          [index].getElementsByTagName("input")[0]
+          .focus();
       }
-      else
-      {
-        Array.from(currentTr.nextElementSibling.nextElementSibling.children)[index].getElementsByTagName("input")[0].focus();
-      }
-     
+
       break;
   }
 
