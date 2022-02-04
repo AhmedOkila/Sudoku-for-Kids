@@ -1,27 +1,28 @@
-import { getCookie } from "./Cookies.js"
+import { getCookie } from "./Cookies.js";
 
 // console.log("alohaaaaa"+getCookie("username"))
 var userName = getCookie("username");
 var level = getCookie("level");
 var today = new Date();
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-var exacttime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-var highscore=0;
+var date =
+  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+var exacttime =
+  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var highscore = 0;
 let scoreTime;
 let start = document.getElementById("start");
 var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
 let selectionImages = document.querySelectorAll(".item img");
 let body = document.body;
-let timeContainerh1 = document.querySelector(".timeContainer h1");
-let nameContainer = document.querySelector(".nameContainer h1");
 let useredit = document.getElementById("useredit");
-let scoreContainer = document.querySelector(".scoreContainer h1");
 let scoreedit = document.getElementById("scoreedit");
-let ResultContainer = document.querySelector(".ResultContainer h1");
-let tableCells = document.querySelectorAll(".editValue");
-let ReferencesImages = document.querySelectorAll(".groupSelected .item");
-
+// let timeContainerh1 = document.querySelector(".timeContainer h1");
+// let nameContainer = document.querySelector(".nameContainer h1");
+// let scoreContainer = document.querySelector(".scoreContainer h1");
+// let ResultContainer = document.querySelector(".ResultContainer h1");
+// let tableCells = document.querySelectorAll(".editValue");
+// let ReferencesImages = document.querySelectorAll(".groupSelected .item");
 //let group = localStorage.getItem("Group");
 //let groupType = localStorage.getItem("groupType");
 // console.log(group);
@@ -29,35 +30,37 @@ let group = localStorage.getItem("Group");
 let groupType = localStorage.getItem("groupType");
 let source;
 source = `../images/${groupType}/${group}/`;
-useredit.innerHTML=getCookie("username"); //fitting the username into place
-let currentHighScore=0
-if(localStorage.getItem(userName)){//if the user exist fetch his highscore
-currentHighScore=JSON.parse(localStorage.getItem(userName)).highscore;
+useredit.innerHTML = getCookie("username"); //fitting the username into place
+let currentHighScore = 0;
+if (localStorage.getItem(userName)) {
+  //if the user exist fetch his highscore
+  currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore;
 }
 scoreedit.innerHTML = currentHighScore; //fitting the new highscore saved last time
 
-
-
 (function groupSwitching() {
   if (groupType == "ocean_theme") {
+    // body.style.backgroundImage = "url(../images/ocean_theme/ocean3.jpg)";
+    // start.style.backgroundColor = "#00405e";
+    // start.style.border = "5px solid #011324";
+    // timeContainerh1.style.backgroundColor = "#00405e";
+    // timeContainerh1.style.border = "5px solid #011324";
+    // nameContainer.style.backgroundColor = "#00405e";
+    // nameContainer.style.border = "5px solid #011324";
+    // scoreContainer.style.backgroundColor = "#00405e";
+    // scoreContainer.style.border = "5px solid #011324";
+    // ResultContainer.style.backgroundColor = "#00405e";
+    // ResultContainer.style.border = "5px solid #011324";
+    // for (let index = 0; index < tableCells.length; index++) {
+    //   tableCells[index].style.backgroundColor = "#00405e";
+    //   tableCells[index].style.border = "5px solid #011324";
+    // }
+    // for (let index = 0; index < ReferencesImages.length; index++) {
+    //   ReferencesImages[index].style.border = "5px solid #011324";
+    // }
+    body.style.setProperty("--mainBackgroundColor", "#00405e");
+    body.style.setProperty("--mainBorderColor", "#011324");
     body.style.backgroundImage = "url(../images/ocean_theme/ocean3.jpg)";
-    start.style.backgroundColor = "#00405e";
-    start.style.border = "5px solid #011324";
-    timeContainerh1.style.backgroundColor = "#00405e";
-    timeContainerh1.style.border = "5px solid #011324";
-    nameContainer.style.backgroundColor = "#00405e";
-    nameContainer.style.border = "5px solid #011324";
-    scoreContainer.style.backgroundColor = "#00405e";
-    scoreContainer.style.border = "5px solid #011324";
-    ResultContainer.style.backgroundColor = "#00405e";
-    ResultContainer.style.border = "5px solid #011324";
-    for (let index = 0; index < tableCells.length; index++) {
-      tableCells[index].style.backgroundColor = "#00405e";
-      tableCells[index].style.border = "5px solid #011324";
-    }
-    for (let index = 0; index < ReferencesImages.length; index++) {
-      ReferencesImages[index].style.border = "5px solid #011324";
-    }
   }
 })();
 
@@ -114,7 +117,7 @@ function changeStatus(isSuccessful) {
 
 let tmContainer = document.getElementById("time");
 //changing time to try popup
-let time = 5;
+let time = 60;
 
 let tt;
 let Flag = 1;
@@ -183,7 +186,7 @@ playagain.onclick = function () {
 home.onclick = function () {
   saveIntoLocalStorage();
   setHighScore();
-}
+};
 
 start.addEventListener("click", function () {
   table.style.transform = "rotate(360deg)";
@@ -192,7 +195,7 @@ start.addEventListener("click", function () {
     tt = setInterval(() => {
       time--;
       tmContainer.innerText = time;
-      scoreTime=time;
+      scoreTime = time;
     }, 1000);
     setTimeout(() => {
       clearInterval(tt);
@@ -349,32 +352,34 @@ function random_location() {
 }
 
 function setHighScore() {
-  var currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore
-  if(scoreTime > currentHighScore){
+  var currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore;
+  if (scoreTime > currentHighScore) {
     highscore = scoreTime;
-    let newUserInfo ={//userinfo as object for local storage
+    let newUserInfo = {
+      //userinfo as object for local storage
       username: userName,
       score: time,
-      lastplayed: date+":"+exacttime,
+      lastplayed: date + ":" + exacttime,
       highscore: highscore,
-      level: level
+      level: level,
     };
-    localStorage.setItem(userName,JSON.stringify(newUserInfo));
+    localStorage.setItem(userName, JSON.stringify(newUserInfo));
     console.log("saved from inside if condition on the set highscore");
   }
   console.log("saved from outside if condition on the set highscore");
 }
 
-let userInfo ={//userinfo as object for local storage
+let userInfo = {
+  //userinfo as object for local storage
   username: userName,
   score: time,
-  lastplayed: date+":"+exacttime,
+  lastplayed: date + ":" + exacttime,
   highscore: highscore,
-  level: level
+  level: level,
 };
 
 function saveIntoLocalStorage() {
-  localStorage.setItem(userName,JSON.stringify(userInfo));
+  localStorage.setItem(userName, JSON.stringify(userInfo));
 }
 
 // function cheat(){

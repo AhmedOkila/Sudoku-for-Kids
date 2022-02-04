@@ -9,6 +9,8 @@ body {
   font-family: "Oswald", sans-serif;
   font-weight: 900;
   position: relative;
+  --mainBackgroundColor: #02103d;
+  --mainBorderColor: #0e87f8; 
 }
 .groupSelected {
   margin: 20px 0px;
@@ -23,7 +25,7 @@ body {
   height: 100px;
   width: 100px;
   /* background-color: #5c0808; */
-  border: 5px solid #0e87f8;
+  border: 5px solid var(--mainBorderColor);
   border-radius: 5%;
   text-align: center;
 }
@@ -47,8 +49,8 @@ body {
   font-weight: 900;
   font-size: 50px;
   color: white;
-  background-color: #02103d;
-  border: 5px solid #0e87f8;
+  background-color: var(--mainBackgroundColor);
+  border: 5px solid var(--mainBorderColor);
   border-radius: 5%;
   cursor: pointer;
 }
@@ -63,8 +65,8 @@ body {
   text-align: center;
 }
 .timeContainer h1 {
-  background-color: #02103d;
-  border: 5px solid #0e87f8;
+  background-color: var(--mainBackgroundColor);
+  border: 5px solid var(--mainBorderColor);
   border-radius: 5%;
   color: white;
   font-size: 60px;
@@ -87,8 +89,8 @@ body {
   text-align: center;
 }
 .nameContainer h1 {
-  background-color: #02103d;
-  border: 5px solid #0e87f8;
+  background-color: var(--mainBackgroundColor);
+  border: 5px solid var(--mainBorderColor);
   border-radius: 5%;
   color: white;
   font-size: 40px;
@@ -109,8 +111,8 @@ body {
   vertical-align: middle;
 }
 .scoreContainer h1 {
-  background-color: #02103d;
-  border: 5px solid #0e87f8;
+  background-color: var(--mainBackgroundColor);
+  border: 5px solid var(--mainBorderColor);
   border-radius: 5%;
   color: white;
   font-size: 40px;
@@ -131,8 +133,8 @@ body {
   vertical-align: middle;
 }
 .ResultContainer h1 {
-  background-color: #02103d;
-  border: 5px solid #0e87f8;
+  background-color: var(--mainBackgroundColor);
+  border: 5px solid var(--mainBorderColor);
   border-radius: 5%;
   color: white;
   font-size: 40px;
@@ -161,9 +163,9 @@ table {
   height: 100%;
   padding: 0px;
   margin: 0px;
-  border: 5px solid #0e87f8;
+  border: 5px solid var(--mainBorderColor);
   border-radius: 5%;
-  background-color: #02103d;
+  background-color: var(--mainBackgroundColor);
 }
 
 .editValue:hover {
@@ -172,7 +174,7 @@ table {
 .editValue input {
   font-family: Segoe UI, Arial;
   font-size: 30px;
-  color: #0e87f8;
+  color: var(--mainBorderColor);
   width: 100%;
   height: 100%;
   padding: 0px;
@@ -229,8 +231,8 @@ table {
   padding: 7px 20px !important;
   font-size: 28px;
   border-radius: 7px;
-  border: 5px solid #0e87f8;
-  background-color: #02103d;
+  border: 5px solid var(--mainBorderColor);
+  background-color: var(--mainBackgroundColor);
   color: white;
 }
 
