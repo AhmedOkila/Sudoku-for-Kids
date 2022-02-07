@@ -1,13 +1,36 @@
+import { getCookie } from "./Cookies.js";
+
+var userName = getCookie("username");
+var level = getCookie("level");
+var today = new Date();
+var date =
+  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+var exacttime =
+  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var highscore = 0;
+let scoreTime;
 let start = document.getElementById("start");
 var table = document.getElementsByTagName("table")[0];
 let player_state = document.getElementById("win_lose");
 let selectionImages = document.querySelectorAll(".item img");
+let body = document.body;
+let useredit = document.getElementById("useredit");
+let scoreedit = document.getElementById("scoreedit");
 
 //let group = localStorage.getItem("Group");
 let group = "aliens";
 console.log(group);
 let source;
 source = `../images/space_theme/${group}/`;
+
+useredit.innerHTML = getCookie("username"); //fitting the username into place
+let currentHighScore = 0;
+if (localStorage.getItem(userName)) {
+  //if the user exist fetch his highscore
+  currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore;
+}
+scoreedit.innerHTML = currentHighScore; //fitting the new highscore saved last time
+
 
 for (let index = 0; index < selectionImages.length; index++) {
   selectionImages[index].src = `${source}/${index + 1}.png`;
@@ -59,6 +82,7 @@ start.addEventListener("click", function () {
     tt = setInterval(() => {
       time--;
       tmContainer.innerText = time;
+      scoreTime = time;
     }, 1000);
     setTimeout(() => {
       clearInterval(tt);
@@ -205,6 +229,47 @@ function random_location() {
     console.log(`source: ${source}`);
     console.log(`group: ${group}`);
   }
+}
+
+function setHighScore() {
+  // currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore;
+  if (scoreTime > currentHighScore) {
+    highscore = scoreTime;
+    let newUserInfo = {
+      //userinfo as object for local storage
+      username: userName,
+      score: time,
+      lastplayed: date + ":" + exacttime,
+      highscore: highscore,
+      level: level,
+    };
+    localStorage.setItem(userName, JSON.stringify(newUserInfo));
+    console.log("saved from inside if condition on the set highscore--------------");
+  }else{
+    let newUserInfo = {
+      //userinfo as object for local storage
+      username: userName,
+      score: time,
+      lastplayed: date + ":" + exacttime,
+      highscore: currentHighScore,
+      level: level,
+    };
+    localStorage.setItem(userName, JSON.stringify(newUserInfo));
+  }
+  console.log("saved from outside if condition on the set highscore");
+}
+
+let userInfo = {
+  //userinfo as object for local storage
+  username: userName,
+  score: time,
+  lastplayed: date + ":" + exacttime,
+  highscore: highscore,
+  level: level,
+};
+
+function saveIntoLocalStorage() {
+  localStorage.setItem(userName, JSON.stringify(userInfo));
 }
 
 random_location();
