@@ -352,7 +352,7 @@ function random_location() {
 }
 
 function setHighScore() {
-  var currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore;
+  // currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore;
   if (scoreTime > currentHighScore) {
     highscore = scoreTime;
     let newUserInfo = {
@@ -364,7 +364,17 @@ function setHighScore() {
       level: level,
     };
     localStorage.setItem(userName, JSON.stringify(newUserInfo));
-    console.log("saved from inside if condition on the set highscore");
+    console.log("saved from inside if condition on the set highscore--------------");
+  }else{
+    let newUserInfo = {
+      //userinfo as object for local storage
+      username: userName,
+      score: time,
+      lastplayed: date + ":" + exacttime,
+      highscore: currentHighScore,
+      level: level,
+    };
+    localStorage.setItem(userName, JSON.stringify(newUserInfo));
   }
   console.log("saved from outside if condition on the set highscore");
 }
