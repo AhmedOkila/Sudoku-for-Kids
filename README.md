@@ -9,17 +9,21 @@ You can start by installing the project and run the "index.html" file in the HTM
 
 ## Using localStorage
 
-```python
-import foobar
+```javascript
+localstorage.setItem("username"+"level",JSON.stringify(userInfo));
 
-# returns 'words'
-foobar.pluralize('word')
+//To be used in 2 levels with an object
+//Object:
 
-# returns 'geese'
-foobar.pluralize('goose')
+let userInfo = {
+  //userinfo as object for local storage
+  username: userName,
+  score: time,
+  lastplayed: date + ":" + exacttime,
+  highscore: highscore,
+  level: level,
+};
 
-# returns 'phenomenon'
-foobar.singularize('phenomena')
 ```
 
 ## Contributing
