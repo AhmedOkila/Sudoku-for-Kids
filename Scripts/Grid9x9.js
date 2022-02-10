@@ -31,6 +31,9 @@ if (localStorage.getItem(userName)) {
 }
 scoreedit.innerHTML = currentHighScore; //fitting the new highscore saved last time
 
+body.style.setProperty("--mainBackgroundColor", "#00405e");
+    body.style.setProperty("--mainBorderColor", "#011324");
+    body.style.backgroundImage = "url(../images/ocean_theme/ocean3.jpg)";
 
 for (let index = 0; index < selectionImages.length; index++) {
   selectionImages[index].src = `${source}/${index + 1}.png`;
@@ -48,10 +51,12 @@ var arr = [
   ["", "", "", "", "", "", "", "", ""],
 ];
 function vail() {
+  let care = true;
+  let state = true;
   for (let k = 0; k < arr.length; k++) {
     for (let i = 0; i < arr[k].length; i++) {
-      itrator = 0;
-      itr = 0;
+      var itrator = 0;
+      var itr = 0;
       for (let j = 0; j < arr[k].length; j++) {
         if (arr[k][i] == arr[k][j]) {
           itrator++;
@@ -59,18 +64,36 @@ function vail() {
         if (arr[k][i] == arr[j][k]) {
           itr++;
         }
-        if (itrator > 1 || itr > 1) {
-          player_state.innerText = "Fail!";
-        } else {
-          player_state.innerText = "Success";
+        if (itrator > 1) {
+          state = false;
+        }
+        if (itr > 1) {
+          care = false;
         }
       }
     }
   }
+  if (state && care) {
+    //player_state.innerText = "Success";
+    return true;
+  } else {
+    //player_state.innerText = "Fail!";
+    return false;
+  }
 }
 
+//change inner text of result
+function changeStatus(isSuccessful) {
+  if (isSuccessful) {
+    player_state.innerText = "Success";
+  } else {
+    player_state.innerText = "Fail!";
+  }
+}
+
+
 let tmContainer = document.getElementById("time");
-let time = 120;
+let time = 10;
 
 let tt;
 let Flag = 1;
@@ -86,7 +109,10 @@ start.addEventListener("click", function () {
     }, 1000);
     setTimeout(() => {
       clearInterval(tt);
-      vail();
+      //vail();
+      changeStatus(vail());
+      //for popup
+      actionOnTimeOut();
     }, time * 1000);
   }
   Flag = 0;
@@ -273,3 +299,70 @@ function saveIntoLocalStorage() {
 }
 
 random_location();
+
+
+/* ****check if array is full**** */
+function checkIfFull() {
+  let checker = 0;
+  // loop the outer array
+  for (let i = 0; i < arr.length; i++) {
+    // get the size of the inner array
+    var innerArrayLength = arr[i].length;
+    // loop the inner array
+    for (let j = 0; j < innerArrayLength; j++) {
+      if (arr[i][j]) {
+      } else {
+        checker++;
+      }
+    }
+  }
+  if (checker > 0) {
+    //empty
+    return false;
+  } else {
+    //full
+    return true;
+  }
+}
+
+// function actionOnSuccess(){}
+function actionOnSuccess() {
+  if (checkIfFull()) {
+    if (vail()) {
+      //success
+      popup.className = "window";
+      popup.style.display = "block";
+      popup.style.border = "5px solid green";
+      popup.style.color = "green";
+      message.innerText = "SUCCESS";
+      popup.style.backgroundColor = "rgba(155, 242, 162 , 0.7)";
+      start.disabled = true;
+      player_state.innerText = "Success";
+      clearInterval(tt);
+    }
+  }
+}
+
+//action on time out
+function actionOnTimeOut() {
+  if (checkIfFull() || !vail()) {
+    popup.className = "window";
+    popup.style.display = "block";
+    popup.style.border = "5px solid crimson";
+    popup.style.color = "red";
+    popup.style.backgroundColor = "rgba(245, 176, 176 , 0.7)";
+    message.innerText = "FAIL !";
+    start.disabled = true;
+  }
+}
+
+//play again button
+playagain.onclick = function () {
+  saveIntoLocalStorage();
+  setHighScore();
+  window.location.reload();
+};
+home.onclick = function () {
+  saveIntoLocalStorage();
+  setHighScore();
+}

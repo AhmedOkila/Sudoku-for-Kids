@@ -118,7 +118,6 @@ function changeStatus(isSuccessful) {
 let tmContainer = document.getElementById("time");
 //changing time to try popup
 let time = 60;
-
 let tt;
 let Flag = 1;
 
@@ -186,8 +185,7 @@ playagain.onclick = function () {
 home.onclick = function () {
   saveIntoLocalStorage();
   setHighScore();
-};
-
+}
 start.addEventListener("click", function () {
   table.style.transform = "rotate(360deg)";
   table.style.visibility = "visible";
@@ -345,6 +343,8 @@ function random_location() {
     arr[ran].splice(ran2, 1, (i + 1).toString());
     el.nextElementSibling.children[0].src = `${source}/${i + 1}.PNG`;
     el.nextElementSibling.children[0].style.display = "block";
+    el.nextElementSibling.children[0].style.border="3px solid red";
+    el.nextElementSibling.children[0].style.opacity="0.9";
     el.disabled = true;
     console.log(`source: ${source}`);
     console.log(`group: ${group}`);
