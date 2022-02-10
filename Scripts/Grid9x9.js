@@ -25,9 +25,9 @@ source = `../images/space_theme/${group}/`;
 
 useredit.innerHTML = getCookie("username"); //fitting the username into place
 let currentHighScore = 0;
-if (localStorage.getItem(userName)) {
+if (localStorage.getItem(userName+"-"+level)) {
   //if the user exist fetch his highscore
-  currentHighScore = JSON.parse(localStorage.getItem(userName)).highscore;
+  currentHighScore = JSON.parse(localStorage.getItem(userName+"-"+level)).highscore;
 }
 scoreedit.innerHTML = currentHighScore; //fitting the new highscore saved last time
 
@@ -269,7 +269,7 @@ function setHighScore() {
       highscore: highscore,
       level: level,
     };
-    localStorage.setItem(userName, JSON.stringify(newUserInfo));
+    localStorage.setItem(userName+"-"+level, JSON.stringify(newUserInfo));
     console.log("saved from inside if condition on the set highscore--------------");
   }else{
     let newUserInfo = {
@@ -280,7 +280,7 @@ function setHighScore() {
       highscore: currentHighScore,
       level: level,
     };
-    localStorage.setItem(userName, JSON.stringify(newUserInfo));
+    localStorage.setItem(userName+"-"+level, JSON.stringify(newUserInfo));
   }
   console.log("saved from outside if condition on the set highscore");
 }
@@ -295,7 +295,7 @@ let userInfo = {
 };
 
 function saveIntoLocalStorage() {
-  localStorage.setItem(userName, JSON.stringify(userInfo));
+  localStorage.setItem(userName+"-"+level, JSON.stringify(userInfo));
 }
 
 random_location();
