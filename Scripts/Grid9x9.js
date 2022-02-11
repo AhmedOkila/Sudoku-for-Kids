@@ -93,7 +93,7 @@ function changeStatus(isSuccessful) {
 
 
 let tmContainer = document.getElementById("time");
-let time = 10;
+let time = 120;
 
 let tt;
 let Flag = 1;

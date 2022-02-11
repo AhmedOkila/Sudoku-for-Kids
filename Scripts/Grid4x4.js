@@ -117,7 +117,7 @@ function changeStatus(isSuccessful) {
 
 let tmContainer = document.getElementById("time");
 //changing time to try popup
-let time = 10;
+let time = 60;
 let tt;
 let Flag = 1;
 
