@@ -363,6 +363,8 @@ function actionOnTimeOut() {
     popup.style.backgroundColor = "rgba(245, 176, 176 , 0.7)";
     message.innerText = "FAIL !";
     start.disabled = true;
+    let cell = document.activeElement;
+    cell.disabled=true;
   }
 }
 

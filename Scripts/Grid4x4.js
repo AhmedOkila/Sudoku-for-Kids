@@ -117,7 +117,7 @@ function changeStatus(isSuccessful) {
 
 let tmContainer = document.getElementById("time");
 //changing time to try popup
-let time = 60;
+let time = 10;
 let tt;
 let Flag = 1;
 
@@ -174,6 +174,17 @@ function actionOnTimeOut() {
     popup.style.backgroundColor = "rgba(245, 176, 176 , 0.7)";
     message.innerText = "FAIL !";
     start.disabled = true;
+    // for(let i=0; i<4; i++){
+    //   let x = i.toString();
+    //   for(let j=0; j<4; j++){
+    //     let y = j.toString();
+    //     let required = x+y;
+    //     let cell = document.getElementById(required);
+    //     cell.disabled=true;
+    //   }
+    // }
+    let cell = document.activeElement;
+    cell.disabled=true;
   }
 }
 
