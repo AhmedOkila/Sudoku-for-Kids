@@ -156,6 +156,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[0].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "2":
       e.target.value = "";
@@ -163,6 +164,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[1].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "3":
       e.target.value = "";
@@ -171,6 +173,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[2].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "4":
       e.target.value = "";
@@ -179,6 +182,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[3].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "5":
       e.target.value = "";
@@ -187,6 +191,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[4].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "6":
       e.target.value = "";
@@ -195,6 +200,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[5].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "7":
       e.target.value = "";
@@ -203,6 +209,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[6].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "8":
       e.target.value = "";
@@ -211,6 +218,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[7].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "9":
       e.target.value = "";
@@ -219,6 +227,7 @@ table.addEventListener("keyup", (e) => {
       e.target.parentElement.children[1].children[0].src =
         selectionImages[8].src;
       e.target.parentElement.children[1].children[0].style.display = "block";
+      actionOnSuccess(e.target);
       break;
     case "":
       break;
@@ -326,7 +335,7 @@ function checkIfFull() {
 }
 
 // function actionOnSuccess(){}
-function actionOnSuccess() {
+function actionOnSuccess(e) {
   if (checkIfFull()) {
     if (vail()) {
       //success
@@ -339,6 +348,7 @@ function actionOnSuccess() {
       start.disabled = true;
       player_state.innerText = "Success";
       clearInterval(tt);
+      e.disabled=true;
     }
   }
 }
