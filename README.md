@@ -6,6 +6,20 @@ The project is a simplified version of normal sudoku, with two levels, level one
 
 You can start by installing the project and run the "index.html" file in the HTML folder
 
+![1](https://github.com/AhmedOkila/Sudoku-for-Kids/blob/main/Demo/1.png)
+
+Then you get to the login page or where you write your username for us and your desired level to start playing!
+
+![2](https://github.com/AhmedOkila/Sudoku-for-Kids/blob/main/Demo/2.png)
+
+You're all set, you just need to choose a group of images that you would like to play the game with
+
+![3](https://github.com/AhmedOkila/Sudoku-for-Kids/blob/main/Demo/3.png)
+
+Now let's play!
+
+
+![4](https://github.com/AhmedOkila/Sudoku-for-Kids/blob/main/Demo/4.png)
 
 ## Using localStorage
 
